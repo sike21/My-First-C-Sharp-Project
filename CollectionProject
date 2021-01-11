@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TheCollectionProject
+{
+    public partial class Form1 : Form
+    {
+      
+
+        List<Developer> CollectionDevelopers = new List<Developer>(6);
+        public Form1()
+        {
+
+            InitializeComponent();
+            CollectionDevelopers.Add(new Developer("Cheryl", "Williams", "763", true));
+            CollectionDevelopers.Add(new Developer("Peter", "Smith", "853", false));
+            CollectionDevelopers.Add(new Developer("Casie", "Wilton", "453", true));
+            CollectionDevelopers.Add(new Developer("Robert", "Moore", "983", false));
+            CollectionDevelopers.Add(new Developer("Jack", "Cameron", "203", false));
+
+
+        }
+
+        public void btnDev_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.AddRange(CollectionDevelopers.ToArray());
+           
+            
+        }
+          
+        private void btnFemaleDeves_Click(object sender, EventArgs e)
+
+        {
+            listBox1.Items.Clear();
+           var FemaleDevelopers = CollectionDevelopers.Where(i => i.Gender.Equals(true)).ToList();
+            listBox1.Items.AddRange(FemaleDevelopers.ToArray());
+ 
+            }
+        
+
+        private void btnMaleDeves_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            var MaleDevelopers = CollectionDevelopers.Where(x => x.Gender.Equals(false)).ToList();
+
+            listBox1.Items.AddRange(MaleDevelopers.ToArray());
+            }
+        
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Remove(listBox1.SelectedItem);
+        }
+    }
+    }
+    
+    
+
